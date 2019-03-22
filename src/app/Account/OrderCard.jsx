@@ -74,6 +74,8 @@ class OrderCard extends React.Component {
         );
       case 3:
         return <span className="status complete">{`已完成`}</span>;
+      case 6:
+        return <span className="status pending">{`未付款`}</span>;
       default:
         break;
     }

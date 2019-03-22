@@ -20,7 +20,7 @@
     "redux-form": "^8.1.0",
     "redux-thunk": "^2.3.0"
   },
-  "homepage": "http://kidsnparty.com.au/beautifulfruit",
+  "homepage": "http://kidsnparty.com.au/groupon",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

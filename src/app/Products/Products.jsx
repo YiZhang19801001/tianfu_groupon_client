@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link, Element } from "react-scroll";
-// import Carousel from "../shared/Carousel";
+import Carousel from "../shared/Carousel";
 
 import { getProducts, showModal } from "../../_actions";
 import ProductCard from "./ProductCard";
@@ -21,8 +21,8 @@ class Products extends React.Component {
     return (
       <React.Fragment>
         <Head title={this.props.labels.app_head_title} pageName="products" />
-        {/* <Carousel /> */}
-        <Notice />
+        <Carousel />
+        {/* <Notice /> */}
         <div className="component-products">
           <div className="component-products__category-list">
             {this.props.products.map(category => {

@@ -250,7 +250,7 @@ class ChoiceForm extends React.Component {
         <div className="component-choice-form__header">
           <div className="component-choice-form__header__image-container">
             <img
-              src={`${baseUrl}${this.props.product.image}`}
+              src={`${this.props.product.image}`}
               alt={this.props.product.name}
             />
           </div>

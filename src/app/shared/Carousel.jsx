@@ -7,10 +7,10 @@ import Notice from "./Notice";
 const MyCarousel = () => {
   return (
     <Carousel showThumbs={false}>
-      <div>
-        <Notice />
-      </div>
       {/* <div>
+        <Notice />
+      </div> */}
+      <div>
         <img src="images/slide_1.png" alt="pic_1" />
       </div>
       <div>
@@ -21,7 +21,7 @@ const MyCarousel = () => {
       </div>
       <div>
         <img src="images/slide_4.png" alt="pic_4" />
-      </div> */}
+      </div>
     </Carousel>
   );
 };
