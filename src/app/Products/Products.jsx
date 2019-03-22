@@ -5,9 +5,7 @@ import Carousel from "../shared/Carousel";
 
 import { getProducts, showModal } from "../../_actions";
 import ProductCard from "./ProductCard";
-import { Head, ShoppingCart, Notice } from "../shared/";
-
-// import "./sass/Products.css";
+import { Head, ShoppingCart, Notice, ScrollNotification } from "../shared/";
 
 class Products extends React.Component {
   componentDidMount() {
@@ -21,7 +19,8 @@ class Products extends React.Component {
     return (
       <React.Fragment>
         <Head title={this.props.labels.app_head_title} pageName="products" />
-        <Carousel />
+        {/* <Carousel /> */}
+        <ScrollNotification />
         {/* <Notice /> */}
         <div className="component-products">
           <div className="component-products__category-list">

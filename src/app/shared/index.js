@@ -4,5 +4,13 @@ import Modal from "./Modal";
 import OrderItemCard from "./OrderItemCard";
 import ShoppingCart from "./ShoppingCart";
 import Notice from "./Notice";
-
-export { Carousel, Head, Modal, OrderItemCard, ShoppingCart, Notice };
+import ScrollNotification from "./ScrollNotification";
+export {
+  Carousel,
+  Head,
+  Modal,
+  OrderItemCard,
+  ShoppingCart,
+  Notice,
+  ScrollNotification
+};

@@ -158,6 +158,12 @@ const orderIdReducer = (order_id = "", action) => {
   }
   return order_id;
 };
+const display_ordersReducer = (display_orders = [], action) => {
+  if (action.type === actionTypes.initialApp) {
+    return action.payload.display_orders;
+  }
+  return display_orders;
+};
 export default combineReducers({
   order_id: orderIdReducer,
   app_status: app_statusReducer,
@@ -178,5 +184,6 @@ export default combineReducers({
   pickupAddress: pickupAddressReducer,
   modalStatus: toggleModalReducer,
   userAllowCash: userAllowCashReducer,
-  customerComments: customerCommentsReducer
+  customerComments: customerCommentsReducer,
+  display_orders: display_ordersReducer
 });

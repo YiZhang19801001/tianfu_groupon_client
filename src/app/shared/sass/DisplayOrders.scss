@@ -1,0 +1,27 @@
+.display-orders {
+  width: 100%;
+  background-color: #fff;
+  color: #000;
+  display: flex;
+  height: 10vh;
+  justify-content: center;
+  align-items: center;
+  .display-order {
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    top: 0;
+
+    background-color: red;
+    animation: slide 0.5s;
+  }
+}
+
+@keyframes slide {
+  0% {
+    left: 100vw;
+  }
+  100% {
+    left: 0;
+  }
+}
