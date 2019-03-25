@@ -8,8 +8,18 @@ class ContactUs extends React.Component {
       return null;
     }
     return (
-      <div className="qrcode-cover">
-        <div className="content">
+      <div
+        onClick={() => {
+          this.setState({ showQrCode: false });
+        }}
+        className="qrcode-cover"
+      >
+        <div
+          onClick={e => {
+            e.stopPropagation();
+          }}
+          className="content"
+        >
           <span>请扫码联系我们的客服</span>
           <div className="img-container">
             <img src={this.props.contact_qrcode} alt="" />
