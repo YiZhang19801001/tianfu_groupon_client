@@ -13,7 +13,7 @@ import OrderItem from "./OrderItem";
  * @returns {JSX} order card component
  */
 class OrderCard extends React.Component {
-  state = { isShowDetail: false };
+  state = { isShowDetail: false, showAddress: false };
   /**
    * render list of order items for certain order
    * @param {Array} list
@@ -134,10 +134,34 @@ class OrderCard extends React.Component {
     );
   };
 
+  renderDetailAddress = order => {
+    if (!this.state.showAddress) {
+      return null;
+    }
+    return (
+      <div
+        onClick={() => {
+          this.setState({ showAddress: false });
+        }}
+        className="detail-address"
+      >
+        <div
+          onClick={e => {
+            e.stopPropagation();
+          }}
+          className="content"
+        >
+          <span className="title">{order.store_name}</span>
+          <span>{order.store_address}</span>
+        </div>
+      </div>
+    );
+  };
   render() {
     const order = this.props.order;
     return (
       <div className="component-order-card">
+        {this.renderDetailAddress(order)}
         <div
           className="header"
           onClick={() =>
@@ -162,7 +186,12 @@ class OrderCard extends React.Component {
               <span className="title">创建日期: </span>
               <span className="value"> {makeDate(order.create_date)}</span>
             </span>
-            <span className="information-row">
+            <span
+              className="information-row"
+              onClick={() => {
+                this.setState({ showAddress: true });
+              }}
+            >
               <span className="title">取货地点: </span>
               <span className="value"> {order.store_address}</span>
             </span>
