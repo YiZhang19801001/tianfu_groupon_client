@@ -164,11 +164,15 @@ class OrderCard extends React.Component {
             </span>
             <span className="information-row">
               <span className="title">取货地点: </span>
-              <span className="value"> {order.store_name}</span>
+              <span className="value"> {order.store_address}</span>
             </span>
             <span className="information-row">
               <span className="title">取货时间: </span>
               <span className="value"> {order.picked_date}</span>
+            </span>
+            <span className="information-row">
+              <span className="title">取货电话: </span>
+              <span className="value"> {order.store_phone}</span>
             </span>
             <span className="information-row">
               <span className="title">产品明细: </span>
