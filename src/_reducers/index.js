@@ -164,6 +164,12 @@ const display_ordersReducer = (display_orders = [], action) => {
   }
   return display_orders;
 };
+const contact_qrcodeReducer = (contact_qrcode = "", action) => {
+  if (action.type === actionTypes.initialApp) {
+    return action.payload.contact_qrcode;
+  }
+  return contact_qrcode;
+};
 export default combineReducers({
   order_id: orderIdReducer,
   app_status: app_statusReducer,
@@ -185,5 +191,6 @@ export default combineReducers({
   modalStatus: toggleModalReducer,
   userAllowCash: userAllowCashReducer,
   customerComments: customerCommentsReducer,
-  display_orders: display_ordersReducer
+  display_orders: display_ordersReducer,
+  contact_qrcode: contact_qrcodeReducer
 });

@@ -1,0 +1,44 @@
+.component-contact-us {
+  i {
+    position: fixed;
+    bottom: 11vh;
+    right: 1vw;
+    z-index: 50;
+    color: color("main");
+    border: 2px solid color("main");
+    padding: 7px;
+    background-color: color("whiteCover");
+    border-radius: 50%;
+  }
+  .qrcode-cover {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    background-color: color("cover");
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 5000;
+    .content {
+      width: 80vw;
+      height: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 10px;
+      justify-content: space-around;
+      background-color: color("bodyBackground");
+      .img-container {
+        border: 2px solid color("main");
+        padding: 10px;
+        border-radius: 5px;
+        img {
+          width: 60vw;
+        }
+      }
+    }
+  }
+}

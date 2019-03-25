@@ -19,7 +19,7 @@ class Products extends React.Component {
     return (
       <React.Fragment>
         <Head title={this.props.labels.app_head_title} pageName="products" />
-        {/* <Carousel /> */}
+        <Carousel />
         <ScrollNotification />
         {/* <Notice /> */}
         <div className="component-products">

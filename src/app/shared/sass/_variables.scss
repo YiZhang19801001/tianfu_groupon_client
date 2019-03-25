@@ -23,7 +23,9 @@ $colors: (
   textButton: #fff,
   // background2: #393a3d,
   background2: rgb(209, 207, 207),
-  textShadow: #000
+  textShadow: #000,
+  contactGreen: #2dc100,
+  whiteCover: rgba(255, 255, 255, 0.65)
 );
 
 @function color($color_name) {

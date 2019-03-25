@@ -6,8 +6,6 @@ import OrderItemCard from "./OrderItemCard";
 import { history } from "../../history";
 import { getTotal, getTotalPrice } from "../../_helpers";
 
-// import "./sass/ShoppingCart.css";
-
 class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
@@ -82,13 +80,18 @@ class ShoppingCart extends React.Component {
                 {`$${getTotalPrice(this.props.shoppingCartList)}`}
               </span>
             </div>
-            {this.props.shoppingCartList.map((orderItem, index) => {
-              return (
-                <OrderItemCard orderItem={orderItem} key={`orderItem${index}`}>
-                  {orderItem.item.name}
-                </OrderItemCard>
-              );
-            })}
+            <div className="component-shopping-cart__list__body">
+              {this.props.shoppingCartList.map((orderItem, index) => {
+                return (
+                  <OrderItemCard
+                    orderItem={orderItem}
+                    key={`orderItem${index}`}
+                  >
+                    {orderItem.item.name}
+                  </OrderItemCard>
+                );
+              })}
+            </div>
             <div className="component-shopping-cart__list__footer">
               <Link
                 onClick={this.toggleList}
@@ -119,12 +122,14 @@ class ShoppingCart extends React.Component {
   render() {
     return (
       <div className="component-shopping-cart">
-        <div
-          onClick={this.toggleList}
-          className="component-shopping-cart__header"
-        >
-          {this.renderIcon()}
-        </div>
+        {!this.state.showList ? (
+          <div
+            onClick={this.toggleList}
+            className="component-shopping-cart__header"
+          >
+            {this.renderIcon()}
+          </div>
+        ) : null}
         {this.renderList()}
       </div>
     );
