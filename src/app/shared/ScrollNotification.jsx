@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { makeDate } from "../../_helpers";
+import { makeSimpleDate } from "../../_helpers";
 
 class ScrollNotification extends React.Component {
   state = { displayHeight: 0, show: false };
@@ -26,12 +26,13 @@ class ScrollNotification extends React.Component {
         style={{ transform: `translateY(-${this.state.displayHeight}px)` }}
       >
         {this.props.orders.map(order => {
-          const { customer_name, date, total } = order;
+          const { customer_name, date, product_name, product_quantity } = order;
           return (
             <div key={`order${order.order_id}`} className={`display-order`}>
               <span className={`name`}>{customer_name}</span>
-              <span className={`date`}>{makeDate(date)}</span>
-              <span className={`total`}>${total}</span>
+              <span className={`date`}>{makeSimpleDate(date)}</span>
+              <span className={`product_name`}>{product_name}</span>
+              <span className={`quantity`}>x{product_quantity}</span>
             </div>
           );
         })}

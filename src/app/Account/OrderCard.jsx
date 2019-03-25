@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { renderNewShoppingCart, deleteOrder } from "../../_actions";
-import { makeDate } from "../../_helpers";
+import { makeSimpleDate } from "../../_helpers";
 import OrderItem from "./OrderItem";
 
 // import "./sass/OrderCard.css";
@@ -184,7 +184,10 @@ class OrderCard extends React.Component {
           <div className="information">
             <span className="information-row">
               <span className="title">创建日期: </span>
-              <span className="value"> {makeDate(order.create_date)}</span>
+              <span className="value">
+                {" "}
+                {makeSimpleDate(order.create_date)}
+              </span>
             </span>
             <span
               className="information-row"

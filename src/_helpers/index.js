@@ -116,7 +116,22 @@ const months = [
 ];
 
 const weeks = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+export const makeSimpleDate = value => {
+  const dt = new Date(value);
 
+  const day = dt.getDate();
+  const month = dt.getMonth();
+
+  // const hours = dt.getHours();
+  // const minutes = dt.getMinutes();
+
+  const formatDay = day > 9 ? day : `0${day}`;
+  const formatMonth = months[month];
+  // const formatHours = hours > 9 ? hours : `0${hours}`;
+  // const formatMinutes = minutes > 9 ? minutes : `0${minutes}`;
+
+  return `${formatDay} ${formatMonth}`;
+};
 export const makeDate = value => {
   const dt = new Date(value);
 
