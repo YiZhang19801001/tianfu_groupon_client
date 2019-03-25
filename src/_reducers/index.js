@@ -38,7 +38,7 @@ const selectedShopReducer = (selectedShop = {}, action) => {
     return action.payload;
   } else if (action.type === actionTypes.renderNewShoppingCart) {
     return action.payload.selectedShop;
-  } else if (action.type === actionTypes.getShops) {
+  } else if (action.type === actionTypes.getShops && !selectedShop.open) {
     return action.payload[0];
   }
 

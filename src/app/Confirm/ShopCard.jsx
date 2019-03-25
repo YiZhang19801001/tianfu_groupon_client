@@ -38,6 +38,40 @@ class ShopCard extends React.Component {
     this.props.selectShop(this.props.shop);
   };
 
+  renderShopDetails = (location_id, address, telephone) => {
+    if (location_id !== this.props.selectedShop.location_id) {
+      return null;
+    }
+    return (
+      <>
+        <div className="sub-info address">
+          <span className="title">地址</span>
+          <span className="value">{address}</span>
+        </div>
+        <div className="sub-info date">
+          <span className="title">取货日期</span>
+          <span className="value">
+            <select
+              value={
+                location_id === this.props.selectedShop.location_id
+                  ? this.props.pickedDate
+                  : this.state.selectedDate
+              }
+              onChange={this.handleOnChange}
+              className="value"
+              disabled={location_id !== this.props.selectedShop.location_id}
+            >
+              {this.renderAvaliableDates()}
+            </select>
+          </span>
+        </div>
+        <div className="sub-info phone">
+          <span className="title">电话</span>
+          <span className="value">{telephone}</span>
+        </div>
+      </>
+    );
+  };
   render() {
     const { location_id, address, telephone, name } = this.props.shop;
 
@@ -52,31 +86,7 @@ class ShopCard extends React.Component {
             <span className="title">店名</span>
             <span className="value">{name}</span>
           </div>
-          <div className="sub-info address">
-            <span className="title">地址</span>
-            <span className="value">{address}</span>
-          </div>
-          <div className="sub-info date">
-            <span className="title">取货日期</span>
-            <span className="value">
-              <select
-                value={
-                  location_id === this.props.selectedShop.location_id
-                    ? this.props.pickedDate
-                    : this.state.selectedDate
-                }
-                onChange={this.handleOnChange}
-                className="value"
-                disabled={location_id !== this.props.selectedShop.location_id}
-              >
-                {this.renderAvaliableDates()}
-              </select>
-            </span>
-          </div>
-          <div className="sub-info phone">
-            <span className="title">电话</span>
-            <span className="value">{telephone}</span>
-          </div>
+          {this.renderShopDetails(location_id, address, telephone)}
         </div>
         <input
           type="radio"
