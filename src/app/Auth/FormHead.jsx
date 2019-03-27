@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { connect } from "react-redux";
 import { history } from "../../history";
-
-// import "./sass/FormHead.css";
 
 const FormHead = () => {
   return (
@@ -14,7 +12,7 @@ const FormHead = () => {
         }`}
         to={`${process.env.PUBLIC_URL}/register`}
       >
-        注册
+        {this.props.labels.auth_form_head_signup}
       </Link>
       <Link
         className={`component-from-head__nav right${
@@ -22,10 +20,14 @@ const FormHead = () => {
         }`}
         to={`${process.env.PUBLIC_URL}/login`}
       >
-        登录
+        {this.props.labels.auth_form_head_signin}
       </Link>
     </div>
   );
 };
 
-export default FormHead;
+const mapStateToProps = ({ labels }) => {
+  return { labels };
+};
+
+export default connect(mapStateToProps)(FormHead);

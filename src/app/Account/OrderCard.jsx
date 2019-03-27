@@ -51,7 +51,7 @@ class OrderCard extends React.Component {
 
     return (
       <span>
-        <span className="title">总计:</span>
+        <span className="title">{this.props.labels.order_card_total}:</span>
         <span className="value">$ {total.toFixed(2)}</span>
       </span>
     );
@@ -64,18 +64,29 @@ class OrderCard extends React.Component {
   getStatusName = id => {
     switch (parseInt(id)) {
       case 2:
-        return <span className="status pending">{`待取货`}</span>;
+        return (
+          <span className="status pending">
+            {this.props.labels.order_card_status_2}
+          </span>
+        );
       case 1:
         return (
-          <span
-            className="status saved"
-            onClick={this.continueOrder}
-          >{`继续>>`}</span>
+          <span className="status saved" onClick={this.continueOrder}>
+            {this.props.labels.order_card_status_1}
+          </span>
         );
       case 3:
-        return <span className="status complete">{`已完成`}</span>;
+        return (
+          <span className="status complete">
+            {this.props.labels.order_card_status_3}
+          </span>
+        );
       case 6:
-        return <span className="status pending">{`未付款`}</span>;
+        return (
+          <span className="status pending">
+            {this.props.labels.order_card_status_6}
+          </span>
+        );
       default:
         break;
     }
@@ -128,7 +139,7 @@ class OrderCard extends React.Component {
             this.setState({ isShowDetail: false });
           }}
         >
-          delete
+          {this.props.labels.order_card_delete}
         </button>
       </div>
     );
@@ -169,7 +180,7 @@ class OrderCard extends React.Component {
           }
         >
           <span className="information-row">
-            <span className="title">订单号:</span>
+            <span className="title">{this.props.order_card_invoice_no}:</span>
             <span className="value">{order.invoice_no}</span>
           </span>
           <span className="toggle">
@@ -183,7 +194,9 @@ class OrderCard extends React.Component {
         <div className="card-body">
           <div className="information">
             <span className="information-row">
-              <span className="title">创建日期: </span>
+              <span className="title">
+                {this.props.order_card_created_date}:{" "}
+              </span>
               <span className="value">
                 {" "}
                 {makeSimpleDate(order.create_date)}
@@ -195,19 +208,25 @@ class OrderCard extends React.Component {
                 this.setState({ showAddress: true });
               }}
             >
-              <span className="title">取货地点: </span>
+              <span className="title">
+                {this.props.order_card_pick_address}:
+              </span>
               <span className="value"> {order.store_address}</span>
             </span>
             <span className="information-row">
-              <span className="title">取货时间: </span>
+              <span className="title">{this.props.order_card_pick_date}:</span>
               <span className="value"> {order.picked_date}</span>
             </span>
             <span className="information-row">
-              <span className="title">取货电话: </span>
+              <span className="title">
+                {this.props.order_card_pick_phone}:{" "}
+              </span>
               <span className="value"> {order.store_phone}</span>
             </span>
             <span className="information-row">
-              <span className="title">产品明细: </span>
+              <span className="title">
+                {this.props.order_card_pick_order_items}:{" "}
+              </span>
               <span className="value">
                 {this.renderOrderList(order.order_items)}
               </span>
@@ -238,7 +257,11 @@ class OrderCard extends React.Component {
   }
 }
 
+const mapStateToProps = ({ labels }) => {
+  return { labels };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   { renderNewShoppingCart, deleteOrder }
 )(OrderCard);

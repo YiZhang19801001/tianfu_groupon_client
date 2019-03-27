@@ -36,14 +36,15 @@ class Complete extends React.Component {
     if (error_code) {
       return <p>支付失败，请重试</p>;
     }
+    const labels = this.props.labels;
     return (
       <div className="component-complete__trasition-information">
         <div className="component-complete__trasition-information__row">
           <span className="component-complete__trasition-information__subtitle">
-            {`支付ref. No.`}
+            {labels.complete_payment_id}
           </span>
           <span className="component-complete__trasition-information__value">
-            ${transaction_id}
+            {transaction_id}
           </span>
         </div>
         <div className="component-complete__trasition-information__row">

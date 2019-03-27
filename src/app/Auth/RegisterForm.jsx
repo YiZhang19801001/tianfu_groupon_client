@@ -3,7 +3,6 @@ import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 
 import { register } from "../../_actions";
-// import "./sass/Form.css";
 
 class RegisterForm extends React.Component {
   renderInput = ({ input, placeholder, type, meta }) => {
@@ -37,7 +36,7 @@ class RegisterForm extends React.Component {
               <Field
                 name="username"
                 component={this.renderInput}
-                placeholder="请输入用户名"
+                placeholder={this.props.labels.signup_form_placeholder_username}
                 type="text"
               />
             </label>
@@ -48,7 +47,7 @@ class RegisterForm extends React.Component {
               <Field
                 name="phone"
                 component={this.renderInput}
-                placeholder="请输入phone no."
+                placeholder={this.props.labels.signup_form_placeholder_phone}
                 type="text"
               />
             </label>
@@ -59,7 +58,7 @@ class RegisterForm extends React.Component {
               <Field
                 name="password"
                 component={this.renderInput}
-                placeholder="请输入密码"
+                placeholder={this.props.labels.signup_form_placeholder_password}
                 type="password"
               />
             </label>
@@ -70,12 +69,16 @@ class RegisterForm extends React.Component {
               <Field
                 name="repeat_password"
                 component={this.renderInput}
-                placeholder="请再次输入密码"
+                placeholder={
+                  this.props.labels.signup_form_placeholder_repeat_password
+                }
                 type="password"
               />
             </label>
           </div>
-          <button className="component-form__submit-button">确认</button>
+          <button className="component-form__submit-button">
+            {this.props.labels.signup_form_submit_button}
+          </button>
         </form>
       </div>
     );
@@ -99,7 +102,12 @@ const validate = formValues => {
 const reduxFormWrapper = reduxForm({ form: "registerForm", validate })(
   RegisterForm
 );
+
+const mapStateToProps = ({ labels }) => {
+  return { labels };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   { register }
 )(reduxFormWrapper);

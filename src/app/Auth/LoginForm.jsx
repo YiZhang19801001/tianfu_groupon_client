@@ -3,8 +3,6 @@ import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 
 import { login } from "../../_actions";
-// import "./sass/Form.css";
-
 class LoginForm extends React.Component {
   renderInput = ({ input, placeholder, type }) => {
     return (
@@ -30,7 +28,7 @@ class LoginForm extends React.Component {
               <Field
                 name="phone"
                 component={this.renderInput}
-                placeholder="请输入phone no. 或 邮箱地址"
+                placeholder={this.props.labels.login_form_placeholder_phone}
                 type="text"
               />
             </label>
@@ -41,20 +39,25 @@ class LoginForm extends React.Component {
               <Field
                 name="password"
                 component={this.renderInput}
-                placeholder="请输入密码"
+                placeholder={this.props.labels.login_form_placeholder_password}
                 type="password"
               />
             </label>
           </div>
 
-          <button className="component-form__submit-button">确认</button>
+          <button className="component-form__submit-button">
+            {this.props.labels.login_form_submit_button}
+          </button>
         </form>
       </div>
     );
   }
 }
 const reduxFormWrapper = reduxForm({ form: "loginForm" })(LoginForm);
+const mapStateToProps = ({ labels }) => {
+  return { labels };
+};
 export default connect(
-  null,
+  mapStateToProps,
   { login }
 )(reduxFormWrapper);
