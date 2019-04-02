@@ -4,6 +4,7 @@ class ContactUs extends React.Component {
   state = { showQrCode: false };
 
   renderQrCode = () => {
+    const { labels } = this.props;
     if (!this.state.showQrCode) {
       return null;
     }
@@ -20,7 +21,7 @@ class ContactUs extends React.Component {
           }}
           className="content"
         >
-          <span>请扫码联系我们的客服</span>
+          <span>{labels.contact_us_message}</span>
           <div className="img-container">
             <img src={this.props.contact_qrcode} alt="" />
           </div>
@@ -52,7 +53,7 @@ class ContactUs extends React.Component {
     );
   }
 }
-const mapStateToProps = ({ contact_qrcode }) => {
-  return { contact_qrcode };
+const mapStateToProps = ({ labels, contact_qrcode }) => {
+  return { labels, contact_qrcode };
 };
 export default connect(mapStateToProps)(ContactUs);

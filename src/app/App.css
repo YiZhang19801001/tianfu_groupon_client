@@ -437,6 +437,9 @@ body {
   justify-content: space-around;
   background-color: #fff;
 }
+.component-contact-us .qrcode-cover .content span {
+  text-align: center;
+}
 .component-contact-us .qrcode-cover .content .img-container {
   border: 2px solid #ffba2d;
   padding: 10px;
