@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { queryPayment } from "../../_actions";
 
 import { Head } from "../shared/";
+import { makeDate } from "../../_helpers";
 
 class Complete extends React.Component {
   state = { paymentId: "" };
@@ -49,7 +50,7 @@ class Complete extends React.Component {
         </div>
         <div className="component-complete__trasition-information__row">
           <span className="component-complete__trasition-information__subtitle">
-            {`应付金额`}
+            {labels.complete_payable}
           </span>
           <span className="component-complete__trasition-information__value">
             ${bill_amount}
@@ -57,7 +58,7 @@ class Complete extends React.Component {
         </div>
         <div className="component-complete__trasition-information__row">
           <span className="component-complete__trasition-information__subtitle">
-            {`支付状态`}
+            {labels.complete_payment_status}
           </span>
           <span className="component-complete__trasition-information__value">
             {status}
@@ -65,10 +66,10 @@ class Complete extends React.Component {
         </div>
         <div className="component-complete__trasition-information__row">
           <span className="component-complete__trasition-information__subtitle">
-            {`支付时间`}
+            {labels.complete_paid_date}
           </span>
           <span className="component-complete__trasition-information__value">
-            {date_time}
+            {makeDate(date_time)}
           </span>
         </div>
         <div className="component-complete__trasition-information__row">

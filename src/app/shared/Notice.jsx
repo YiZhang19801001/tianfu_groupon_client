@@ -2,20 +2,22 @@ import React from "react";
 import { connect } from "react-redux";
 import { makeDate } from "../../_helpers";
 
-const Notice = ({ app_status }) => {
+const Notice = ({ app_status, labels }) => {
   const { isOpen, start_date, end_date } = app_status;
 
   const renderContent = () => {
     if (isOpen) {
       return (
-        <span className="primary">本团截止日期：{makeDate(end_date)}</span>
+        <span className="primary">
+          {labels.notice_primary_open}：{makeDate(end_date)}
+        </span>
       );
     }
     return (
       <>
-        <span className="primary">当前团已关闭</span>
+        <span className="primary">{labels.notice_primary_close}</span>
         <span className="secondary">
-          下一团开启日期为:{makeDate(start_date)}
+          {labels.notice_secondary}:{makeDate(start_date)}
         </span>
       </>
     );
@@ -28,8 +30,8 @@ const Notice = ({ app_status }) => {
   );
 };
 
-const mapStateToProps = ({ app_status }) => {
-  return { app_status };
+const mapStateToProps = ({ app_status, labels }) => {
+  return { app_status, labels };
 };
 
 export default connect(mapStateToProps)(Notice);

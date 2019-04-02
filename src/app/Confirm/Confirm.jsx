@@ -5,6 +5,7 @@ import _ from "lodash";
 import ShopSection from "./ShopSection";
 import PaymentMethodSection from "./PaymentMethodSection";
 import CustomerCommentsSection from "./CustomerCommentsSection";
+import PaymentLoading from "./PaymentLoading";
 
 import { Head } from "../shared";
 import {
@@ -15,13 +16,13 @@ import {
   changeCustomerComments
 } from "../../_actions";
 
-import { baseUrl } from "../../_apis";
 import { makeDate } from "../../_helpers";
 class Confirm extends React.Component {
   state = {
     showShopListSection: true,
     showPaymentMethodSection: false,
-    showCustomerCommentsSection: false
+    showCustomerCommentsSection: false,
+    showPaymentLoading: false
   };
 
   /**
@@ -77,11 +78,16 @@ class Confirm extends React.Component {
    */
   renderSectionHeader = (content, attributeName) => {
     const stateProperty = this.state[attributeName];
+    const {
+      showPaymentMethodSection,
+      showShopListSection,
+      showCustomerCommentsSection
+    } = this.props.labels;
     let isDone = this.getIsDone(attributeName);
     const title = {
-      showPaymentMethodSection: `支付方式`,
-      showShopListSection: `取货时间地点`,
-      showCustomerCommentsSection: `客户备注`
+      showPaymentMethodSection,
+      showShopListSection,
+      showCustomerCommentsSection
     };
     return (
       <div
@@ -112,25 +118,26 @@ class Confirm extends React.Component {
    * @returns {string} title
    */
   getDetail = (content, attributeName) => {
+    const { labels } = this.props;
     if (attributeName === "showShopListSection") {
       if (this.props.selectedShop.name && makeDate(this.props.pickedDate)) {
-        return `取货地点：${this.props.selectedShop.name} 取货日期：${
-          this.props.pickedDate
-        }`;
+        return `${labels.confirm_address}：${this.props.selectedShop.name} ${
+          labels.confirm_date
+        }：${this.props.pickedDate}`;
       } else {
         return content;
       }
     }
     if (attributeName === "showPaymentMethodSection") {
       if (this.props.paymentMethod) {
-        return `支付方式：${this.props.paymentMethod}`;
+        return `${labels.comfirm_paymentMethod}：${this.props.paymentMethod}`;
       } else {
         return content;
       }
     }
     if (attributeName === "showCustomerCommentsSection") {
       if (this.props.customerComments !== "") {
-        return `备注：${this.props.customerComments}`;
+        return `${labels.comfirm_comments}：${this.props.customerComments}`;
       } else {
         return content;
       }
@@ -142,6 +149,7 @@ class Confirm extends React.Component {
    * call makepayment action to make payment
    */
   submitPayment = () => {
+    this.setState({ showPaymentLoading: true });
     this.props.makePayment();
   };
   saveOrder = () => {
@@ -154,6 +162,13 @@ class Confirm extends React.Component {
     return (
       <React.Fragment>
         <Head title={this.props.labels.app_head_title} pageName="confirm" />
+        {this.state.showPaymentLoading && (
+          <PaymentLoading
+            setShowPaymentLoading={value => {
+              this.setState({ showPaymentLoading: value });
+            }}
+          />
+        )}
         <div className="component-confirm">
           {this.renderSectionHeader(
             this.props.labels.subtitle_select_date,
