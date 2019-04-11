@@ -1,5 +1,3 @@
-@import "../../shared/sass/_variables.scss";
-
 .component-confirm {
   overflow: scroll;
   height: 88vh;
@@ -7,14 +5,21 @@
 }
 .component-confirm__section-header {
   font-size: 12px;
-  height: 6vh;
+
   margin-top: 2vh;
-  padding-bottom: 2vh;
+  padding-bottom: 1vh;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid color("lightBorder");
+  &.expand {
+    border-bottom: none;
+    .payment-section,
+    .shop-section {
+      border-bottom: 1px solid color("lightBorder");
+    }
+  }
   .is-done {
     width: 10%;
     display: flex;
@@ -71,9 +76,9 @@
 }
 .payment-section__body {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  padding: 20px;
+  padding: 20px 0;
   flex-wrap: wrap;
 }
 .payment-section__body input {
@@ -82,6 +87,24 @@
 }
 .payment-section__radio-label {
   margin-top: 10px;
+  margin-right: 2rem;
+  &.poli {
+    .payment-section__check-mark-wrapper {
+      width: max-content;
+      .payment-section__body-img {
+        width: auto;
+      }
+    }
+  }
+  span {
+    &.title {
+      margin-top: 0.3rem;
+      font-size: 0.8rem;
+      text-align: center;
+      width: 100%;
+      display: inline-block;
+    }
+  }
 }
 .payment-section__check-mark-wrapper {
   background-color: color("lightBackground");

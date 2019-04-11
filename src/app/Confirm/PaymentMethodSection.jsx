@@ -8,7 +8,7 @@ const PaymentMethodSection = ({ setPaymentMethod, toggleSection }) => {
   const compare = ua.match(/MicroMessenger/i) == "micromessenger";
   let defaultMethods = [
     { value: "Paypal", image: "/images/paypal.png" },
-    { value: "POLI", image: "/images/poli.png" }
+    { value: "POLI", image: "/images/poli.svg" }
   ];
   let paymentMethods = [];
   if (compare) {
@@ -32,7 +32,9 @@ const PaymentMethodSection = ({ setPaymentMethod, toggleSection }) => {
     return (
       <label
         key={`paymentMethod${value}`}
-        className="payment-section__radio-label"
+        className={`payment-section__radio-label ${
+          value === "POLI" ? "poli" : ""
+        }`}
       >
         <input
           type="radio"
@@ -47,6 +49,7 @@ const PaymentMethodSection = ({ setPaymentMethod, toggleSection }) => {
             alt=""
           />
         </span>
+        <span className="title">{value === "POLI" ? "CARD PAY" : value}</span>
       </label>
     );
   };

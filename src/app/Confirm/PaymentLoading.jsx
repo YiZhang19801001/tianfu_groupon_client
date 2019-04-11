@@ -8,15 +8,27 @@ const PaymentLoading = ({ paymentMethod, setShowPaymentLoading }) => {
 
   return (
     <div className="payment-loading">
-      <div
-        className="content"
-        style={{ backgroundImage: `url('${baseUrl}/images/spinner.svg')` }}
-      >
-        <h1>connect to {paymentMethod ? paymentMethod : "wechat"}</h1>
-        <div className="image-container">
-          <img src={`${baseUrl}${renderImageUrl(paymentMethod)}`} alt="" />
+      <div className="content">
+        <div className="header">
+          <span className="left">正在创建</span>
+          <span className="image-container">
+            <img src={`${baseUrl}${renderImageUrl(paymentMethod)}`} alt="" />
+          </span>
+          <span className="right">支付链接</span>
         </div>
-        <button onClick={close}>cancel</button>
+        <div className="loader">
+          <span>请稍后</span>
+          <div class="loading-dots">
+            <div class="loading-dots--dot" />
+            <div class="loading-dots--dot" />
+            <div class="loading-dots--dot" />
+          </div>
+        </div>
+        <button onClick={close}>取消支付</button>
+        <div className="footer">
+          <i>Supported by</i>
+          <img src={`${baseUrl}/images/redpayments.png`} alt="" />
+        </div>
       </div>
     </div>
   );
