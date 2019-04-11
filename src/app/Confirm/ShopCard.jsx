@@ -9,22 +9,24 @@ class ShopCard extends React.Component {
   renderAvaliableDates = () => {
     const { labels } = this.props;
     const { open } = this.props.shop;
-    const { open_date, open_time, close_time } = open;
-    const dateString = `${makeShopOpenDate(
-      open_date
-    )}: ${open_time} -- ${close_time}`;
+
     return (
       <>
         <option value={`未选定日期`} disabled={true}>
           --{labels.shop_card_placeholder_date_selector}--
         </option>
-        {/* {open.map((date, index) => {
+        {open.map(date => {
+          const { open_date, open_time, close_time } = date;
+          const dateString = `${makeShopOpenDate(
+            open_date
+          )}: ${open_time} -- ${close_time}`;
+
           return (
-            <option key={`availableDate${name}${index}`} value={date}>
-              {date}
+            <option key={dateString} value={dateString}>
+              {dateString}
             </option>
           );
-        })} */}
+        })}
         <option value={dateString}>{dateString}</option>
       </>
     );
