@@ -27,7 +27,6 @@ class ShopCard extends React.Component {
             </option>
           );
         })}
-        <option value={dateString}>{dateString}</option>
       </>
     );
   };
