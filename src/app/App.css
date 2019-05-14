@@ -814,13 +814,19 @@ hr {
 
 .component-confirm__section-header {
   font-size: 12px;
-  height: 6vh;
   margin-top: 2vh;
-  padding-bottom: 2vh;
+  padding-bottom: 1vh;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid #e0dcdc;
+}
+.component-confirm__section-header.expand {
+  border-bottom: none;
+}
+.component-confirm__section-header.expand .payment-section,
+.component-confirm__section-header.expand .shop-section {
   border-bottom: 1px solid #e0dcdc;
 }
 .component-confirm__section-header .is-done {
@@ -878,9 +884,9 @@ hr {
 
 .payment-section__body {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  padding: 20px;
+  padding: 20px 0;
   flex-wrap: wrap;
 }
 
@@ -891,6 +897,20 @@ hr {
 
 .payment-section__radio-label {
   margin-top: 10px;
+  margin-right: 2rem;
+}
+.payment-section__radio-label.poli .payment-section__check-mark-wrapper {
+  width: max-content;
+}
+.payment-section__radio-label.poli .payment-section__check-mark-wrapper .payment-section__body-img {
+  width: auto;
+}
+.payment-section__radio-label span.title {
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
 }
 
 .payment-section__check-mark-wrapper {
@@ -1102,13 +1122,13 @@ hr {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #c7c7c7a5;
+  background-color: rgba(0, 0, 0, 0.55);
   z-index: 88888888888888900;
 }
 .component-confirm .payment-loading .content {
   background-color: #fff;
-  height: 50%;
-  width: 80%;
+  height: 30%;
+  width: 75%;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -1118,12 +1138,32 @@ hr {
   background-repeat: no-repeat;
   background-position: center;
   box-shadow: 0 0 3px #8c8c8c;
-  padding: 50px 0;
+  padding: 1.5rem 0 0.5rem 0;
 }
-.component-confirm .payment-loading .content h1 {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #8c8c8c;
+.component-confirm .payment-loading .content .header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.component-confirm .payment-loading .content .header span {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+.component-confirm .payment-loading .content .header span.left {
+  text-align: right;
+  display: inline;
+  padding-right: 0.5rem;
+}
+.component-confirm .payment-loading .content .header span.right {
+  text-align: left;
+  display: inline;
+  padding-left: 0.5rem;
+}
+.component-confirm .payment-loading .content .header span.image-container {
+  border: none;
 }
 .component-confirm .payment-loading .content .image-container {
   width: 50%;
@@ -1140,14 +1180,79 @@ hr {
   width: 100%;
 }
 .component-confirm .payment-loading .content button {
-  height: 35px;
-  width: 80px;
-  background-color: #f55747;
+  height: 1.7rem;
+  width: 4rem;
+  font-size: 0.7rem;
+  font-family: inherit;
+  background-color: #fff;
   text-transform: uppercase;
-  color: #fff;
-  border: 1px solid #fff;
+  color: #969696;
+  border: 1px solid #979797;
   border-radius: 3px;
-  box-shadow: 0 0 5px #f55747;
+  box-shadow: none;
+  outline: none;
+}
+.component-confirm .payment-loading .content .footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 1rem;
+  padding-right: 0.5rem;
+}
+.component-confirm .payment-loading .content .footer i {
+  color: #989898;
+  font-size: 0.5rem;
+  margin-right: 0.5rem;
+  font-weight: normal;
+}
+.component-confirm .payment-loading .content .footer img {
+  height: 100%;
+}
+
+@keyframes dot-keyframes {
+  0% {
+    opacity: 0.4;
+    transform: scale(1, 1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scale(1, 1);
+  }
+}
+.loader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loader span {
+  margin-right: 4px;
+  margin-left: 15px;
+}
+.loader .loading-dots {
+  text-align: center;
+  display: flex;
+  margin-top: 3px;
+}
+.loader .loading-dots--dot {
+  animation: dot-keyframes 1.5s infinite ease-in-out;
+  background-color: #000;
+  border-radius: 5px;
+  display: inline-block;
+  height: 5px;
+  width: 5px;
+  margin-right: 2px;
+}
+.loader .loading-dots--dot:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.loader .loading-dots--dot:nth-child(3) {
+  animation-delay: 1s;
 }
 
 .component-complete {
