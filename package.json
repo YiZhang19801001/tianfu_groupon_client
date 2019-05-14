@@ -10,7 +10,6 @@
     "check-prop-types": "^1.1.2",
     "highcharts": "^7.0.0",
     "lodash": "^4.17.11",
-    "material-design-icons": "^3.0.1",
     "moment": "^2.24.0",
     "prop-types": "^15.7.1",
     "query-string": "^6.4.2",
