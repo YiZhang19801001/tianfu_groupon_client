@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { makeDate } from "../../_helpers";
+import moment from "moment";
 
 const Notice = ({ app_status, labels }) => {
   const { isOpen, start_date, end_date } = app_status;
@@ -9,7 +10,7 @@ const Notice = ({ app_status, labels }) => {
     if (isOpen) {
       return (
         <span className="primary">
-          {labels.notice_primary_open}：{makeDate(end_date)}
+          {labels.notice_primary_open}：{moment(end_date, "DD-MMM")}
         </span>
       );
     }
@@ -17,7 +18,7 @@ const Notice = ({ app_status, labels }) => {
       <>
         <span className="primary">{labels.notice_primary_close}</span>
         <span className="secondary">
-          {labels.notice_secondary}:{makeDate(start_date)}
+          {labels.notice_secondary}:{moment(start_date, "DD-MMM")}
         </span>
       </>
     );

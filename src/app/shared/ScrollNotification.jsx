@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { makeSimpleDate } from "../../_helpers";
+import { uniqueId } from "lodash";
+import moment from "moment";
 
 class ScrollNotification extends React.Component {
   state = { displayHeight: 0, show: false };
@@ -28,9 +30,9 @@ class ScrollNotification extends React.Component {
         {this.props.orders.map(order => {
           const { customer_name, date, product_name, product_quantity } = order;
           return (
-            <div key={`order${order.order_id}`} className={`display-order`}>
+            <div key={uniqueId("notice")} className={`display-order`}>
               <span className={`name`}>{customer_name}</span>
-              <span className={`date`}>{makeSimpleDate(date)}</span>
+              <span className={`date`}>{moment(date).format("DD MMM")}</span>
               <span className={`product_name`}>{product_name}</span>
               <span className={`quantity`}>x{product_quantity}</span>
             </div>

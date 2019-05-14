@@ -12,8 +12,12 @@ import ChoiceForm from "./ChoiceForm";
 class ProductCard extends React.Component {
   constructor(props) {
     super(props);
-
+    this.myRef = React.createRef();
     this.state = { showChoiceForm: false, showDetail: false };
+  }
+
+  componentDidMount() {
+    console.log(this.myRef.current.offsetTop);
   }
   getQuantity = () => {
     let counter = 0;
@@ -161,6 +165,7 @@ class ProductCard extends React.Component {
       <div
         className="component-product-card"
         data-test="component-product-card"
+        ref={this.myRef}
       >
         {this.renderProductDetail()}
         {this.renderGroupOnTag()}
