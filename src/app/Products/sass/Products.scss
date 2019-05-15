@@ -12,6 +12,7 @@
   height: calc(100vh - 182px);
   overflow: scroll;
   margin-top: 10px;
+  -webkit-overflow-scrolling: touch;
 }
 .component-products__category-list {
   flex: 1;

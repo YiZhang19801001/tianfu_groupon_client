@@ -1,17 +1,66 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link, Element } from "react-scroll";
+import { Link, Element, Events } from "react-scroll";
 import Carousel from "../shared/Carousel";
 
 import { getProducts, showModal } from "../../_actions";
 import ProductCard from "./ProductCard";
-import { Head, ShoppingCart, Notice, ScrollNotification } from "../shared/";
+import { Head, ShoppingCart, ScrollNotification } from "../shared/";
 
+let lastScrollTop = 0;
 class Products extends React.Component {
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
+    this.myContainer = React.createRef();
+    this.state = {
+      CarouselHeight: 130,
+      backgroundColor: "#00000066",
+      color: "#fff"
+    };
+  }
+
+  resetCarouselHeight = currentScrollTop => {
+    const calculateHeight = 130 - currentScrollTop;
+    const containerHeight = this.myContainer.current.clientHeight;
+
+    this.setState({
+      CarouselHeight: calculateHeight > 0 ? calculateHeight : 0
+    });
+    if (containerHeight > calculateHeight && containerHeight < 130) {
+      this.setState({
+        backgroundColor: "#fff",
+        color: "#3b3b3b"
+      });
+    } else {
+      this.setState({
+        backgroundColor: "#00000066",
+        color: "#fff"
+      });
+    }
+  };
+
+  handleScroll = e => {
+    const currentScrollTop = e.target.scrollTop;
+    if (currentScrollTop > lastScrollTop) {
+      this.resetCarouselHeight(currentScrollTop);
+    } else {
+      this.resetCarouselHeight(currentScrollTop);
+    }
+    lastScrollTop = currentScrollTop;
+  };
   componentDidMount() {
     this.props.getProducts();
   }
 
+  componentDidUpdate() {
+    if (this.myRef.current) {
+      this.myRef.current.addEventListener("scroll", this.handleScroll);
+    }
+  }
+  componentWillUnmount() {
+    this.myRef.current.removeEventListener("scroll", this.handleScroll);
+  }
   render() {
     if (!this.props.labels.app_head_title) {
       return <div>loading...</div>;
@@ -19,8 +68,27 @@ class Products extends React.Component {
     return (
       <React.Fragment>
         <Head title={this.props.labels.app_head_title} pageName="products" />
-        <Carousel />
-        <ScrollNotification />
+        <div
+          ref={this.myContainer}
+          style={{
+            position: "relative",
+            minHeight: "3.2rem",
+            backgroundColor: "#fff"
+          }}
+        >
+          <div
+            style={{
+              height: `${this.state.CarouselHeight}px`,
+              overflow: "hidden"
+            }}
+          >
+            <Carousel />
+          </div>
+          <ScrollNotification
+            backgroundColor={this.state.backgroundColor}
+            color={this.state.color}
+          />
+        </div>
         {/* <Notice /> */}
         <div className="component-products">
           <div className="component-products__category-list">
@@ -45,7 +113,11 @@ class Products extends React.Component {
             })}
           </div>
 
-          <div id="product-list" className="component-products__product-list">
+          <div
+            id="product-list"
+            ref={this.myRef}
+            className="component-products__product-list"
+          >
             {this.props.products.map(productGroup => {
               return (
                 <Element
