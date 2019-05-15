@@ -79,7 +79,8 @@ class Products extends React.Component {
           <div
             style={{
               height: `${this.state.CarouselHeight}px`,
-              overflow: "hidden"
+              overflow: "hidden",
+              transition: "all 300ms ease-in"
             }}
           >
             <Carousel />

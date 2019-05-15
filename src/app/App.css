@@ -376,7 +376,8 @@ body {
     align-items: center;
     border-radius: 10px;
     justify-content: space-around;
-    background-color: #fff; }
+    background-color: #fff;
+    padding-bottom: 1rem; }
     .component-contact-us .qrcode-cover .content span {
       text-align: center; }
     .component-contact-us .qrcode-cover .content .img-container {
