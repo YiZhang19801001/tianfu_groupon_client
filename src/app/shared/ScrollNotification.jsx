@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { makeSimpleDate } from "../../_helpers";
 import { uniqueId } from "lodash";
 import moment from "moment";
 
@@ -25,12 +24,23 @@ class ScrollNotification extends React.Component {
     return (
       <div
         className="list"
-        style={{ transform: `translateY(-${this.state.displayHeight}px)` }}
+        style={{
+          transform: `translateY(-${this.state.displayHeight}px)`,
+          backgroundColor: this.props.backgroundColor,
+          color: this.props.color
+        }}
       >
         {this.props.orders.map(order => {
           const { customer_name, date, product_name, product_quantity } = order;
           return (
-            <div key={uniqueId("notice")} className={`display-order`}>
+            <div
+              key={uniqueId("notice")}
+              className={`display-order`}
+              style={{
+                backgroundColor: this.props.backgroundColor,
+                color: this.props.color
+              }}
+            >
               <span className={`name`}>{customer_name}</span>
               <span className={`date`}>{moment(date).format("DD MMM")}</span>
               <span className={`product_name`}>{product_name}</span>
@@ -43,7 +53,17 @@ class ScrollNotification extends React.Component {
   };
 
   render() {
-    return <div className="display-orders">{this.renderDisplayOrders()}</div>;
+    return (
+      <div
+        className="display-orders"
+        style={{
+          backgroundColor: this.props.backgroundColor,
+          color: this.props.color
+        }}
+      >
+        {this.renderDisplayOrders()}
+      </div>
+    );
   }
 }
 

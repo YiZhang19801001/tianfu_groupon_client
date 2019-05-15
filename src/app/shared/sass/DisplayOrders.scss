@@ -1,9 +1,13 @@
 .display-orders {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
   margin-top: 3px;
-  color: #000;
+  background-color: #00000066;
+  color: #fff;
   display: flex;
-  height: 25px;
+  height: 3.2rem;
   overflow: hidden;
   border-bottom: 2px solid color("main");
   padding: 0px 15px;

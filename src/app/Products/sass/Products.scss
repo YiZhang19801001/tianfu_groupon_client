@@ -12,6 +12,7 @@
   height: calc(100vh - 182px);
   overflow: scroll;
   margin-top: 10px;
+  -webkit-overflow-scrolling: touch;
 }
 .component-products__category-list {
   flex: 1;
@@ -45,7 +46,7 @@
   background-color: transparent;
 }
 .component-products__product-list {
-  flex: 3;
+  flex: 4;
   padding: 0 10px;
   padding-bottom: 10vh;
 }

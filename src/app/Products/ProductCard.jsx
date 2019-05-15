@@ -17,7 +17,7 @@ class ProductCard extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.myRef.current.offsetTop);
+    // console.log(this.myRef.current.offsetTop);
   }
   getQuantity = () => {
     let counter = 0;
